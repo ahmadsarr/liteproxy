@@ -7,11 +7,12 @@ import org.sl.liteproxy.request.RequestContext;
 public record Route(
         HttpMethod method,
         PathMatcher matcher,
-        String target,
+        Target target,
         int priority
 ) {
     public boolean match(RequestContext context) {
         return (this.method==null || context.method().equals(this.method))
                 && matcher.match(context.path());
     }
+
 }
